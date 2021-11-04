@@ -18,13 +18,21 @@ import jp.co.sample.repository.EmployeeRepository;
 public class EmployeeService {
 	
 	@Autowired
-	private EmployeeRepository enEmployeeRepository;
+	private EmployeeRepository employeeRepository;
 	
 	/**
 	 * 従業員情報を全件取得する。
 	 * @return
 	 */
 	public List<Employee> showLits() {
-		return enEmployeeRepository.findAll();
+		return employeeRepository.findAll();
+	}
+	/**
+	 * 従業員の詳細情報の表示
+	 * @param id
+	 * @return idで検索された従業員情報１件
+	 */
+	public Employee showDetail(Integer id) {
+		return employeeRepository.load(id);
 	}
 }
