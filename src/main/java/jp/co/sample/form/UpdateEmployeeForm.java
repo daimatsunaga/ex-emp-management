@@ -10,6 +10,7 @@ public class UpdateEmployeeForm {
 	//扶養人数
 	private String dependentsCount;
 	
+	//ゲッターセッター
 	public String getId() {
 		return id;
 	}

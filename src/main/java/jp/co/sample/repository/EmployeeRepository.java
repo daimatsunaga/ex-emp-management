@@ -52,15 +52,18 @@ public class EmployeeRepository {
 	 */
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
-		
-		if(employee.getId() == null) {
-			String insertSql = "INSERT INTO employees VALUES(:id,:name,:image,:gender,:hireDate,:mailAddress,:zipCode,:address,:telephone,:salary,:characteristic,:dependentsCount);";
-			template.update(insertSql, param);
-			System.out.println("追加されました");
-		} else {
-			String updateSql = "UPDATE employees SET name = :name, image = :image, hire_date = :hireDate, mail_address = :mailAddress, zip_code = :zipCode, telephone = :telephone, salary = :salary, characteristic = :characteristic, dependentsCount = :dependentsCount;";
+		System.out.println(employee);
+//		if(employee.getId() == null) {
+//			String insertSql = "INSERT INTO employees VALUES(:id,:name,:image,:gender,:hireDate,:mailAddress,:zipCode,:address,:telephone,:salary,:characteristic,:dependentsCount);";
+//			template.update(insertSql, param);
+//		} else {
+			String updateSql = "UPDATE employees "
+					+ "SET name=:name, image=:image, gender=:gender"
+					+ ", hire_date=:hireDate, mail_address=:mailAddress"
+					+ ", zip_code=:zipCode, address=:address, telephone=:telephone"
+					+ ", salary=:salary, characteristics=:characteristics, dependents_count=:dependentsCount "
+					+ "WHERE id=:id;";
 			template.update(updateSql, param);
-			System.out.println("更新されました");
-		}
+//		}
 	}
 }
