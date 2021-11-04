@@ -37,23 +37,19 @@ public class AdministratorRepository {
 	 */
 	public void insert(Administrator administrator) {
 		if(administrator.getId() == null) {
-			String insertSql = "INSERT INTO administrators VALUES(:id, :name, :mailAdress, :password)";
+			String insertSql = "INSERT INTO administrators(name, mail_address, password)VALUES(:name, :mailAdress, :password)";
 			SqlParameterSource param = new MapSqlParameterSource()
-				.addValue("id", administrator.getId())
 				.addValue("name", administrator.getName())
 				.addValue("mailAdress", administrator.getMailAddress())
 				.addValue("password", administrator.getPassword());
 			template.update(insertSql, param);
-			System.out.println("挿入");
 		} else {
 			String updateSql = "UPDATE administrators SET name = :name, mail_address = :mailAdress, password = :password WHERE id = :id";
 			SqlParameterSource param = new MapSqlParameterSource()
-					.addValue("id", administrator.getId())
 					.addValue("name", administrator.getName())
 					.addValue("mailAdress", administrator.getMailAddress())
 					.addValue("password", administrator.getPassword());
 			template.update(updateSql, param);
-			System.out.println("更新");
 				
 		}
 	}
