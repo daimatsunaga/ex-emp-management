@@ -35,4 +35,8 @@ public class EmployeeService {
 	public Employee showDetail(Integer id) {
 		return employeeRepository.load(id);
 	}
+	
+	public void update(Employee employee) {
+		employeeRepository.update(employee);
+	}
 }
