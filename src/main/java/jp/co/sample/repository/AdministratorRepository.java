@@ -26,7 +26,7 @@ public class AdministratorRepository {
 		Administrator administrator = new Administrator();
 		administrator.setId(rs.getInt("id"));
 		administrator.setName(rs.getString("name"));
-		administrator.setMailAddress(rs.getString("mailAddress"));
+		administrator.setMailAddress(rs.getString("mail_address"));
 		administrator.setPassword(rs.getString("password"));
 		return administrator;
 	};
@@ -44,6 +44,7 @@ public class AdministratorRepository {
 				.addValue("mailAdress", administrator.getMailAddress())
 				.addValue("password", administrator.getPassword());
 			template.update(insertSql, param);
+			System.out.println("挿入");
 		} else {
 			String updateSql = "UPDATE administrators SET name = :name, mail_address = :mailAdress, password = :password WHERE id = :id";
 			SqlParameterSource param = new MapSqlParameterSource()
@@ -52,7 +53,7 @@ public class AdministratorRepository {
 					.addValue("mailAdress", administrator.getMailAddress())
 					.addValue("password", administrator.getPassword());
 			template.update(updateSql, param);
-			System.out.println("処理が完了しました");
+			System.out.println("更新");
 				
 		}
 	}

@@ -32,7 +32,7 @@ public class EmployeeRepository {
 	 * @return　従業員１件分の情報
 	 */
 	public Employee load(Integer id) {
-		String loadSql = "SELECT * FROM employee WHERE id = :id;";
+		String loadSql = "SELECT * FROM employees WHERE id = :id;";
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		Employee employee = template.queryForObject(loadSql, param, EMPLOYEE_ROW_MAPPER);
 		return employee;
